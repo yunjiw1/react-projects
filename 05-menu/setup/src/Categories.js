@@ -4,13 +4,16 @@ const Categories = ({ setCategory }) => {
   const filters = ["All", "Breakfast", "Lunch", "Shakes"];
 
   return (
-    <section className='menu'>
-      <h2 className='title'>Our Menu</h2>
-      <div className='underline' />
-      <div className='btn-container'>
-        {filters.map((b) => <button key={b} className='filter-btn' onClick={(e) => {setCategory(b)}}>{b}</button>)}
-      </div>
-    </section>
+    <div className='btn-container'>
+      {filters.map((category, idx) => { 
+        return (<button 
+          key={idx} 
+          className='filter-btn' 
+          onClick={() => {setCategory(category)}}>
+            {category}
+        </button>);
+      })}
+    </div>
   );
 };
 

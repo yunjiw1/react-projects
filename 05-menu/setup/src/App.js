@@ -8,8 +8,14 @@ function App() {
 
   return (
     <main>
-      <Categories setCategory={setCategory}/>
-      <Menu items={items.filter((d) => category === "All" || d.category.toLowerCase() === category.toLowerCase())} />
+      <section className='menu section'>
+        <div className='title'>
+          <h2>Our Menu</h2>
+          <div className='underline' />
+        </div>
+        <Categories setCategory={setCategory}/>
+        <Menu items={items.filter((d) => category === "All" || d.category.toLowerCase() === category.toLowerCase())} />
+      </section>
     </main>
   );
 }

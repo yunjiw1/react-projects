@@ -2,17 +2,19 @@ import React from 'react';
 
 const Menu = ({ items }) => {
   return (
-    <section className='section-center menu-item'>
-      {items.map((c) => {
+    <section className='section-center'>
+      {items.map((item) => {
         return (
-          <div key={c.id} className='item-info'>
-            <img className='photo' src={c.img}/>
-            <header>
-              <h4>{c.title}</h4>
-              <h4 className='price'>{c.price}</h4>
-            </header>
-            <p className='item-text'>{c.desc}</p>
-          </div>
+          <article key={item.id} className='menu-item'>
+            <img className='photo' src={item.img} alt={item.title}/>
+            <div className='item-info'>
+              <header>
+                <h4>{item.title}</h4>
+                <h4 className='price'>{item.price}</h4>
+              </header>
+              <p className='item-text'>{item.desc}</p>
+            </div>
+          </article>
         )
       })}
     </section>
