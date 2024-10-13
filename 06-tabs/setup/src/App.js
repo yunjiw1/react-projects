@@ -47,16 +47,16 @@ function App() {
       
       <div className='jobs-center'>
         <div className='btn-container'>
-          {jobs.map((job, i) => <button key={job.id} className='job-btn' onClick={() => setIdx(i)}>{job.company}</button>)}
+          {jobs.map((job, i) => <button key={job.id} className={'job-btn' + (idx === i ? ' active-btn' : '')} onClick={() => setIdx(i)}>{job.company}</button>)}
         </div>
         <article className='job-info'>
           <h3>{jobs[idx].title}</h3>
           <h4 className='job-icon'>{jobs[idx].company}</h4>
           <p className='job-date'>{jobs[idx].dates}</p>
-          {jobs[idx].duties.map((d) => {
+          {jobs[idx].duties.map((d, i) => {
             return (
-              <div className='job-desc'>
-                <FaAngleDoubleRight />
+              <div key={i} className='job-desc'>
+                <FaAngleDoubleRight className="job-icon" />
                 <p>{d}</p>
               </div>
             );
