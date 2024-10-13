@@ -7,19 +7,27 @@ const Review = () => {
   const person = people[idx];
 
   return (
-    <section className='container review'>
+    <article className='review'>
       <div className='img-container'>
-        <img className='person-img' src={person.image} />
-        <h3 className='quote-icon'>,,</h3>
+        <img className='person-img' src={person.image} alt={person.name}/>
+        <span className='quote-icon'>
+          <FaQuoteRight />
+        </span>
       </div>
-      <h3 className='author'>{person.name}</h3>
-      <h4 className='job'>{person.job}</h4>
+      <h4 className='author'>{person.name}</h4>
+      <p className='job'>{person.job}</p>
       <p className='info'>{person.text}</p>
-      <button className='prev-btn' onClick={() => setIdx((idx + people.length - 1) % people.length)}>{"<"}</button>
-      <button className='next-btn' onClick={() => setIdx((idx + 1) % people.length)}>{">"}</button>
+      <button className='prev-btn' onClick={() => setIdx((idx + people.length - 1) % people.length)}>
+        <FaChevronLeft />
+      </button>
+      <button className='next-btn' onClick={() => setIdx((idx + 1) % people.length)}>
+        <FaChevronRight />
+      </button>
       <br />
-      <button className='random-btn' onClick={() => setIdx(Math.floor(Math.random() * people.length))}>Surprise Me</button>
-    </section>
+      <button className='random-btn' onClick={() => setIdx(Math.floor(Math.random() * people.length))}>
+        Surprise Me
+      </button>
+    </article>
   );
 };
 
