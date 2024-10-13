@@ -4,16 +4,15 @@ const Question = ({question}) => {
   const [expand, setExpand] = useState(false);
 
   return (
-    <div className='question'>
+    <article className='question'>
       <header>
         <h4>{question.title}</h4>
         <button className='btn' onClick={() => setExpand(!expand)}>
-          {!expand && <AiOutlinePlus />}
-          {expand && <AiOutlineMinus />}
+          {expand ? <AiOutlineMinus /> : <AiOutlinePlus />}
         </button>
       </header>
       {expand && <p>{question.info}</p>}
-    </div>
+    </article>
   );
 };
 
