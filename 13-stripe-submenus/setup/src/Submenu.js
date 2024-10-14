@@ -1,16 +1,22 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { AppContext } from './context';
-import sublinks from './data';
+import { useGlobalContext } from './context';
 
 const Submenu = () => {
-  const {page, isSubmenuOpen} = React.useContext(AppContext);
+  const {page, isSubmenuOpen, location} = useGlobalContext();
+  const container = useRef(null);
+
+  useEffect(() => {
+    const {center, bottom} = location;
+    container.current.style.left = `${center}px`
+    container.current.style.top = `${bottom}px`
+  }, [page]);
 
   return (
-    <aside className={isSubmenuOpen ? 'submenu show' : 'submenu'}>
+    <aside className={isSubmenuOpen ? 'submenu show' : 'submenu'} ref={container}>
       <section>
-        <h4>{sublinks[page].page}</h4>
+        <h4>{page.page}</h4>
         <div className='submenu-center'>
-          {sublinks[page].links.map((link, i) => {
+          {page.links.map((link, i) => {
             return (
               <a key={i} href={link.url}>
                 {link.icon}
