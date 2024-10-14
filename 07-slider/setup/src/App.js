@@ -5,21 +5,50 @@ import data from './data';
 function App() {
   const [idx, setIdx] = useState(0);
 
-  setTimeout(() => {
-    setIdx((idx + 1) % data.length);
-  }, 5000);
+  useEffect(() => {
+    let slider = setInterval(() => {
+      setIdx((idx + 1) % data.length);
+    }, 5000);
+    return () => {
+      clearInterval(slider);
+    };
+  }, [idx]);
 
   return (
-    <section className='section section-center'>
-      <article>
-        <FiChevronLeft className='prev' onClick={() => setIdx((idx + data.length - 1) % data.length)} />
-        <img className='person-img' src={data[idx].image} alt={data[idx].name}/>
-        <h4>{data[idx].name}</h4>
-        <span className='title'>{data[idx].title}</span>
-        <p className='text'>{data[idx].quote}</p>
-        <FiChevronRight className='next' onClick={() => setIdx((idx + 1) % data.length)}/>
-        <FaQuoteRight className='icon'/>
-      </article>
+    <section className='section'>
+      <div className="title">
+        <h2>
+          <span>/</span>reviews
+        </h2>
+      </div>
+      <div className="section-center">
+        {data.map((p, pIdx) => {
+          var position = 'nextSlide';
+          if (idx === pIdx) {
+            position = 'activeSlide';
+          }
+          if (pIdx === (idx + data.length - 1) % data.length) {
+            position = 'lastSlide';
+          }
+
+          return (
+            <article className={position} key={p.id}>
+              <img className='person-img' src={p.image} alt={p.name}/>
+              <h4>{p.name}</h4>
+              <p className='title'>{p.title}</p>
+              <p className='text'>{p.quote}</p>
+              <FaQuoteRight className='icon'/>
+            </article>
+          );
+        })}
+
+        <button className='prev' onClick={() => setIdx((idx + data.length - 1) % data.length)}>
+          <FiChevronLeft />
+        </button>
+        <button className='next' onClick={() => setIdx((idx + 1) % data.length)}>
+          <FiChevronRight />
+        </button>
+      </div>
     </section>
   );
 }
