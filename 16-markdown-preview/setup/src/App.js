@@ -7,12 +7,14 @@ function App() {
   return (
     <main>
       <div className='markdown'>
-        <textarea className='input' value={text} onChange={(e) => setText(e.target.value)}>
+        <textarea 
+          className='input' 
+          value={text} 
+          onChange={(e) => setText(e.target.value)}>
         </textarea>
-        <div className='blockquote result'>
-          <h1>{text.split("\n")[0]}</h1>
-          <p>{text}</p>
-        </div>
+        <article className='result'>
+          <ReactMarkdown>{text}</ReactMarkdown>
+        </article>
       </div>
     </main>
   );
